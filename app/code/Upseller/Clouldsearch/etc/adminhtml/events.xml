@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+   <event name="catalog_product_delete_after_done">
+       <observer name="upseller_clouldsearch_observer_catalogcontrollerproductdelete" instance="Upseller\Clouldsearch\Observer\CatalogControllerProductDelete" />
+   </event>
+
+   <event name="controller_action_postdispatch_adminhtml_catalog_product_delete">
+       <observer name="upseller_clouldsearch_observer_controlleractionpostdispatchadminhtmlcatalogproductdelete" instance="Upseller\Clouldsearch\Observer\ControllerActionPostdispatchAdminhtmlCatalogProductDelete" />
+   </event>
+
+   <event name="catalog_controller_category_delete">
+       <observer name="upseller_clouldsearch_observer_catalogcontrollercategorydelete" instance="Upseller\Clouldsearch\Observer\CatalogControllerCategoryDelete" />
+   </event>
+
+</config>

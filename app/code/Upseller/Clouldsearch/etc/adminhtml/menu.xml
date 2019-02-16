@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Upseller_Clouldsearch::upseller" title="Upseller" translate="title" module="Upseller_Clouldsearch" sortOrder="10" parent="Magento_Backend::system" resource="Upseller_Clouldsearch::upseller"/>
+        <!--<add id="Upseller_Clouldsearch::clouldsearch" title="Clouldsearch" translate="title" module="Upseller_Clouldsearch" sortOrder="10" parent="Upseller_Clouldsearch::upseller" resource="Upseller_Clouldsearch::upseller"/>-->
+        <add id="Upseller_Clouldsearch::synchronization" title="Synchronization" translate="title" module="Upseller_Clouldsearch" sortOrder="10" parent="Upseller_Clouldsearch::upseller" resource="Upseller_Clouldsearch::upseller" action="clouldsearch/clouldsearch/synchronization/" />
+	</menu>
+</config>

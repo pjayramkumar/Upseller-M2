@@ -1,0 +1,67 @@
+<?php //exit('pratik'); ?>
+<script type="text/javascript">
+	require([
+	'jquery',
+	'underscore',
+    'prototype'
+], function ($,_,prototype) {
+	upsellerClass.prototype.extendClassObject = function(){
+
+		
+		var addtocartUrl="<?php echo $this->getUrl('checkout/cart/add', array('product'=>'{{entity_id}}','qty'=>1, 'form_key' => '{{form_key}}','upseller_search'=>1)) ?>";
+		this.addHtmlRenderHits({
+			"key":'addtocart',
+			"html":'<button type="button" title="{{trans.addtocartbtn}}" class="button btn-cart" id="'+addtocartUrl+'" onclick="setLocation(this.id)"><span><span>{{trans.addtocartbtn}}</span></span></button>',
+			"callback":function(hits,_thisCls){
+
+				renderObject={};
+				settings=_thisCls.getSettings();	
+				form_key=_thisCls.getTemplateVariable('form_key');
+
+				if(typeof(this.translation[settings.langcode])!="undefined"){
+					renderObject['trans']=this.translation[settings.langcode];
+				}else{
+					renderObject['trans']=this.translation[_thisCls.defaultLanCode];
+				}
+				renderObject['form_key']=form_key;
+
+				_hits=[];
+				for(hi in hits){
+					if (hits.hasOwnProperty(hi)) {
+						hit=hits[hi];
+						renderObject['entity_id']=hit.entity_id;
+						renderedHtml = _thisCls.renderTemplate(this.html,renderObject);
+						hit[this.key]=renderedHtml;
+						_hits.push(hit);
+					}
+				}
+				
+				if(_hits.lenght){
+					return _hits;
+				}
+
+			},
+			"translation":{
+				'da':{
+					'addtocartbtn':'TILFØJ TIL KURV'
+				}
+			}
+		});
+
+	};
+
+	upsellerClass.prototype.preInitialization = function(){
+
+		this.addTemplateVariable(<?php echo $this->getTemplateVariableJsonConfig(); ?>);
+
+	};
+
+	upsellerClass.prototype.postInitialization = function(){
+		//alert("hello");
+	};
+	var upsellerCls = new upsellerClass(<?php echo $this->getJsonConfig(); ?>);
+	});
+
+</script>
+
+

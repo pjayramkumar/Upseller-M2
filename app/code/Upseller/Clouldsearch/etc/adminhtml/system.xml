@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="upseller_clouldsearch" translate="label" sortOrder="200">
+            <label>Upseller API</label>
+        </tab>
+        <section id="upseller_clouldsearch" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Cloudsearch</label>
+            <tab>upseller_clouldsearch</tab>
+            <resource>Magento_Catalog::config_catalog</resource>
+            <group id="settings" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="active_quicksearch" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled Quick Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="active_advance" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled Advance Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="subdomain" translate="label comment" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Upseller Sub Domain</label>
+                    <comment>Can be found under General at Upseller</comment>
+                </field>
+                <field id="cluster_key" translate="label comment" type="text" sortOrder="32" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Upseller Cluster Key</label>
+                    <comment>Can be found under General at Upseller</comment>
+                </field>
+                <field id="apiuid" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Upseller API UID</label>
+                    <comment>Can be found under General at Upseller</comment>
+                </field>
+                <field id="apikey" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Upseller API Key</label>
+                    <comment>Can be found under General at Upseller</comment>
+                </field>
+                <field id="searchdomain" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Environment</label>
+                    <comment>Select Environment.</comment>
+                    <source_model>Upseller\Clouldsearch\Model\System\Config\Source\Environment\Values</source_model>
+                </field>
+                <field id="syncrobatch" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Synchronization Batch</label>
+                    <comment>Can be found under General at Upseller</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

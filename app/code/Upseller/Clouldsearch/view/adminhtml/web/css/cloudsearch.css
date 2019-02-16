@@ -1,0 +1,30 @@
+.page-popup.adminhtml-api-index{
+	background: #fff;
+}
+.empty {
+    margin: 20px auto 0;
+    width: 90%;
+}
+.content-row{
+	width: 100%;
+	float: left;
+	padding: 5px;
+	margin: 5px;
+	border: solid 1px #ccc;
+}
+.content-row .content-column{
+	font-weight: bold;
+}
+#syncro_information .form-list {
+    width: 100%;
+    font-size: 20px;
+}
+tr.finish {
+    background: #48BE85;
+}
+tr.continue {
+    background: #7CD71A;
+}
+#syncro_information{
+	padding: 0px;
+}

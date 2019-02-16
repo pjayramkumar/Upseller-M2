@@ -1,0 +1,146 @@
+<?php 
+//echo 'pratik-test6';exit;
+?>
+<div class="content-header">
+    <table cellspacing="0"><tbody>
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head"><?php echo __('Cloudsearch Synchronization'); ?></h3></td>
+            <td class="form-buttons">
+
+                <?php echo $this->getMigrateButton() ?>
+
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+<div class="entry-edit">
+	<form id="syncro" name="syncro" action="#" method="post">
+		<div class="entry-edit-head">
+			<h4><?php echo __('Synchronization Data'); ?></h4>
+		</div>
+		<?php 
+		$apiuid = $this->getCloudsearchUid();
+		$apikey = $this->getCloudsearchKey(); 
+		?>
+
+			<div id="general_region" class="fieldset">
+				<div class="hor-scroll">
+					<table class="form-list" cellspacing="0">
+						<tbody>
+							    <tr class="nm">
+							        <td class="label"><label for="username"><?php echo __('Store'); ?></label></td>
+								    <td class="value">
+
+								    	<?php $websites = $this->getWebsites(); ?>
+
+								    	<select id="store_switcher" name="store" class="system-config-store-switcher">
+								    		<?php foreach($websites as $website){ ?>
+								              <option value="<?php echo $website->getCode(); ?>" style="padding-left:16px; background:#DDD; font-weight:bold;" disabled="disabled"><?php echo $website->getName(); ?></option>
+								              		<?php foreach ($website->getGroups() as $group) { ?>
+									                    <optgroup label="<?php echo $group->getName(); ?>" style="padding-left:32px;">
+									                          <?php $stores = $group->getStores(); ?>
+									                          <?php foreach($stores as $store){ ?>
+									                          	<option value="<?php echo $store->getId(); ?>"><?php echo $store->getName(); ?></option>
+									                    	  <?php } ?>	
+									                    </optgroup>
+									                <?php } ?>    
+								            <?php } ?>        
+
+									    </select>
+								    </td>
+							    </tr>
+							    <tr class="nm">
+							        <td class="label"><label for="username"><?php echo __('Products'); ?></label></td>
+								    <td class="value">
+								        <input id="products" name="products" value="1" type="checkbox" class="checkbox" checked="checked"  />
+								    </td>
+							    </tr>
+							    <tr class="nm">
+							        <td class="label"><label for="username"><?php echo __('Categories'); ?></label></td>
+								    <td class="value">
+								        <input id="categories" name="categories" value="1" type="checkbox" class="checkbox" checked="checked"  />
+								    </td>
+							    </tr>
+							  
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		
+	</form>  	
+</div>
+<div class="entry-edit" id="syncronizationdata">
+<?php 
+
+//echo $this->getLayout()->createBlock('Upseller\Clouldsearch\Block\Adminhtml\Synchronization\Syncroinfo')
+//          ->setTemplate('Upseller_Clouldsearch::synchronization/syncroinfo.phtml')
+//          ->toHtml();
+?>
+</div>
+<?php
+$json_arr = array('initurl' => $this->getUrl("clouldsearch/synchronization/init"),
+		'continueurl' => $this->getUrl("clouldsearch/synchronization/continuee"), 
+		'fromdata'=> '#syncro');
+		
+
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "syncrodata": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+	require(['jquery','syncrodata'],function($){
+		$('#clouldsearch_synchronization_start').on('click', function(){
+			var cloudsearchSync = new cloudsearchSynchronization(<?php echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($json_arr); ?>);
+
+		});
+	});
+</script>
+<?php /*
+ 
+<script type="text/javascript">
+	require(['jquery'],function($){
+		$('#clouldsearch_synchronization_start').on('click', function(){
+            var object={};
+			object['initurl']='<?php echo $this->getUrl("clouldsearch/clouldsearch_synchronization/init"); ?>';
+			object['continueurl']='<?php echo $this->getUrl("clouldsearch/clouldsearch_synchronization/continue"); ?>';
+			object['fromdata']=$('#syncro').serialize(true);
+			ajax(object, object.initurl);
+        });
+        
+		// function startSynchronization(){
+		// 	var object={};
+		// 	object['initurl']='<?php echo $this->getUrl("clouldsearch/clouldsearch_synchronization/init"); ?>';
+		// 	object['continueurl']='<?php echo $this->getUrl("clouldsearch/clouldsearch_synchronization/continue"); ?>';
+		// 	object['fromdata']=$('#syncro').serialize(true);
+		// 	alert(object.initurl);
+		// 	//var cloudsearchSynchronizationInit = new cloudsearchSynchronization(object);
+		// 	//ajax(object, object.initurl);
+		// }
+	
+		
+		function ajax(options,url){
+			$.ajax({
+	            url: url,
+	            type: 'POST',
+	            dataType: 'json',
+	            data: options.fromdata,
+		        complete: function(response) {             
+		            alert(response); 
+	            },
+	            error: function (xhr, status, errorThrown) {
+	                console.log('Error happens. Try again.');
+	            }
+	        });
+		}
+	
+	
+	});
+
+</script>
+*/ ?>

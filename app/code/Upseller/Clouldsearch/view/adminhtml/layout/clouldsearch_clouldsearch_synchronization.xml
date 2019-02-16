@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Upseller_Clouldsearch::css/cloudsearch.css" />
+    </head>
+    <body>		
+        <referenceContainer name="content">			
+			<block class="Upseller\Clouldsearch\Block\Adminhtml\Synchronization\Index" name="syncrodataadmin" template="Upseller_Clouldsearch::synchronization/index.phtml" />
+			<!--<block class="Upseller\Clouldsearch\Block\Adminhtml\Synchronization\Syncroinfo" name="syncroinfoadmin" after="syncrodataadmin" template="Upseller_Clouldsearch::synchronization/syncroinfo.phtml" />-->
+        </referenceContainer>       
+    </body>
+</page>

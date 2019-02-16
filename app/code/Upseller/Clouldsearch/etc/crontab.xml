@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="upseller_clouldsearch_cron_group">
+	
+        <job name="upseller_clouldsearch_cronjob_cronsynchronization" instance="Upseller\Clouldsearch\Cron\Cronsynchronization" method="execute">
+            <schedule>0-15 1 * * *</schedule>
+        </job>
+		 
+        <job name="upseller_clouldsearch_cronjob_runcronsynchronization" instance="Upseller\Clouldsearch\Cron\Runcronsynchronization" method="execute">
+            <schedule>*/3 * * * *</schedule>
+        </job>
+		 
+    </group>
+</config>

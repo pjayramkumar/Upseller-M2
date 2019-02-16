@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <upseller_clouldsearch>
+            <settings>
+                <active>1</active>
+                <active_quicksearch>1</active_quicksearch>
+                <active_advance>0</active_advance>
+                <apiuid></apiuid>
+                <apikey></apikey>
+                <searchdomain>5</searchdomain>
+                <syncrobatch>upsellerapp.com</syncrobatch>
+                <subdomain>cloudsearch</subdomain>
+                <cluster_key>7JtoIEjOTSW9BdPj4sRlSQ</cluster_key>
+            </settings>            
+        </upseller_clouldsearch>
+    </default>
+</config>

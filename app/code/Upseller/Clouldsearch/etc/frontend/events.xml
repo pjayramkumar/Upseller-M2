@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+   <event name="checkout_cart_save_after">
+       <observer name="upseller_clouldsearch_observer_checkoutcartsaveafter" instance="Upseller\Clouldsearch\Observer\CheckoutCartSaveAfter" />
+   </event>
+
+   <event name="checkout_cart_product_add_after">
+       <observer name="upseller_clouldsearch_observer_cartproductaddafter" instance="Upseller\Clouldsearch\Observer\CartProductAddAfter" />
+   </event>
+
+   <event name="checkout_cart_update_items_after">
+       <observer name="upseller_clouldsearch_observer_cartproductupdateafter" instance="Upseller\Clouldsearch\Observer\CartProductUpdateAfter" />
+   </event>
+
+   <event name="sales_quote_remove_item">
+       <observer name="upseller_clouldsearch_observer_salesquoteremoveitem" instance="Upseller\Clouldsearch\Observer\SalesQuoteRemoveItem" />
+   </event>
+
+   <event name="checkout_submit_all_after">
+       <observer name="upseller_clouldsearch_observer_checkoutsubmitallafter" instance="Upseller\Clouldsearch\Observer\CheckoutSubmitAllAfter" />
+   </event>
+
+   <event name="layout_load_before">
+       <observer name="upseller_clouldsearch_observer_addjscss" instance="Upseller\Clouldsearch\Observer\AddJsCss" />
+   </event>
+
+</config>
