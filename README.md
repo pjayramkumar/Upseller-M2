@@ -2,7 +2,7 @@
 
 ![Latest version](https://img.shields.io/badge/latest-1.0.0-green.svg)
 
-![PHP >= 7.0](https://img.shields.io/badge/php-%3E=5.3-green.svg)
+![PHP >= 7.0](https://img.shields.io/badge/php-%3E=7.0-green.svg)
 
 ![Magento >= 2.0.0](https://img.shields.io/badge/magento-%3E=2.0.0-blue.svg)
 
