@@ -288,7 +288,14 @@ class Database extends \Magento\Framework\Model\AbstractModel{
 		}
 
 		unset($_productArray[$product['entity_id']]['description']);
-
+		
+		/* code added by pratik */ 
+		$productArrContainer = new Varien_Object();		
+		$this->_eventManager->dispatch('upseller_cloudsync_product_get_after', ['product_array' => $_productArray, 'entity_id' => $product['entity_id'], 'store_id'=>$storeId, 'product_arr_container' => $productArrContainer]);
+		if($productArrContainer->getProductArr() && count($productArrContainer->getProductArr())){
+			$_productArray = $productArrContainer->getProductArr();
+		}
+	
 		return $_productArray;
 
 	}
@@ -319,6 +326,7 @@ class Database extends \Magento\Framework\Model\AbstractModel{
 						$values=$this->getReadConnection()->fetchAll("select value from `".$tableName."` 
 						LEFT JOIN `".$valueTableName."` ON `".$tableName."`.value_id = `".$valueTableName."`.value_id
 						where attribute_id='".$attribute['attribute_id']."' and entity_id='".$entityId."'");
+						
 						$value=[];
 						foreach($values as $val){
 							$value[]=$this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $val['value'];
@@ -360,11 +368,8 @@ class Database extends \Magento\Framework\Model\AbstractModel{
 							$value=$this->getReadConnection()->fetchOne("select value from `".$tableName."` where attribute_id='".$attribute['attribute_id']."' and entity_id='".$entityId."' and store_id='0'");
 						}
 					}
-
-				}	
-  		
+				}  		
 			}else{
-
 				if($entityCode=="product"){
 					if($attribute['backend_type']=="varchar" && $attribute['frontend_input']=="multiselect"){
 						$values=$this->getReadConnection()->fetchAll("SELECT eaov.value as value FROM `".$this->getTableName('eav_attribute_option')."` as eao , `".$this->getTableName('eav_attribute_option_value')."` as eaov , `".$tableName."` as cpev where eao.attribute_id=cpev.attribute_id and eao.option_id=eaov.option_id and cpev.entity_id='".$entityId."' and cpev.attribute_id='".$attribute['attribute_id']."' and FIND_IN_SET (eao.option_id,cpev.value) and cpev.store_id='".$storeId."'");
